@@ -1,0 +1,34 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void func(TreeNode *root, int sum, int cur_sum, vector<vector<int>>& result, vector<int> temp)
+    {
+        if(root==NULL) return;
+        temp.push_back(root->val);
+        cur_sum = cur_sum+root->val;
+        if(root->left==NULL and root->right==NULL)
+        {
+            if(sum==cur_sum)
+                result.push_back(temp);
+            return;
+        }
+        
+        func(root->left,sum,cur_sum,result, temp);
+        func(root->right,sum,cur_sum,result, temp);
+    }
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        vector<vector<int> > result;
+        vector<int> temp;
+        func(root,sum,0,result,temp);
+        return result;
+        
+    }
+};
