@@ -1,0 +1,32 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void func(TreeNode *root,int depth, int &x,int &g_depth)
+    {
+        if(root==NULL) return;
+        if(depth>g_depth)
+        {
+            x = root->val;
+            g_depth = depth;
+        }
+        func(root->left,depth+1,x,g_depth);
+        func(root->right,depth+1,x,g_depth);
+        
+        
+    }
+    int findBottomLeftValue(TreeNode* root) {
+        int x;
+        int g_depth = INT_MIN;
+        func(root,1,x,g_depth);
+        return x;
+        
+    }
+};
