@@ -1,2 +1,2 @@
 # DS-Algo
-Interview Preperation
+Interview Preparation
